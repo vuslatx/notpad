@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Not Defteri</title>
+</head>
+<body>
+    <h1>Not Defteri</h1>
+    <form action="/add" method="POST">
+        <input type="text" name="title" placeholder="Başlık" required><br>
+        <textarea name="content" placeholder="Notunuz" required rows="20" cols="100"></textarea>
+        <button type="submit">Not Ekle</button>
+    </form><br>
+	<form action="/arama" method="GET">
+    <input type="text" name="q" placeholder="Not ara...">
+    <button type="submit">Ara</button>
+</form><br>
+    <hr>
+	
+    <div>
+<% notes.forEach(function(note) { %>
+    <div>
+        <h2><a href="/notes/<%= note.id %>"><%= note.title %></a></h2>
+        <p><%= note.content.substring(0, 100) %>...</p> <!-- İçeriğin bir kısmını göster -->
+        <form action="/delete/<%= note.id %>" method="POST">
+            <button type="submit">Notu Sil</button>
+        </form>
+    </div>
+<% }); %>
+    </div>
+
+</body>
+</html>
+
